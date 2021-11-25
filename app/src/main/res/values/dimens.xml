@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_size">170dp</dimen>
+    <dimen name="icon_size_land">150dp</dimen>
+    <dimen name="card_default_radius">4dp</dimen>
+    <dimen name="card_default_elevation">4dp</dimen>
+
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_title">25sp</dimen>
+    <dimen name="text_size_large">27sp</dimen>
+</resources>

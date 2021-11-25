@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Payoneer</string>
+    <string name="payment">Checkout</string>
+    <string name="dash_text">--</string>
+    <string name="total_payable">Total payable</string>
+    <string name="payment_options">Select payment methods</string>
+</resources>

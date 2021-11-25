@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.main.MainFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTv"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/payment"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/amountLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/total_payable"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="?android:textColorSecondary"
+            android:layout_marginTop="35dp"
+            android:layout_marginHorizontal="25dp"
+            app:layout_constraintTop_toBottomOf="@id/titleTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline3"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/amountTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_large"
+            android:text="@string/dash_text"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/amountLabel"
+            app:layout_constraintStart_toStartOf="@id/amountLabel"
+            app:layout_constraintEnd_toEndOf="@id/amountLabel"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/icon_size_land"
+            android:layout_height="@dimen/icon_size_land"
+            android:alpha="0.1"
+            android:tint="?android:textColorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline4"
+            app:srcCompat="@drawable/ic_ready_cards" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/optionsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_options"
+            android:textSize="@dimen/text_size_small"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="25dp"
+            android:textColor="?android:textColorSecondary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="7dp"
+            android:background="?android:listDivider"
+            app:layout_constraintTop_toBottomOf="@id/optionsLabel"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/methodsPb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/methodsRv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
