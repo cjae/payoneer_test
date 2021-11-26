@@ -3,20 +3,30 @@ package com.expanse.app.payoneer.ui.main;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.expanse.app.payoneer.data.AppDataSource;
 import com.expanse.app.payoneer.data.AppRepository;
-import com.expanse.app.payoneer.di.Injector;
 import com.expanse.app.payoneer.model.Response;
-import com.expanse.app.payoneer.utils.SchedulersFacade;
+import com.expanse.app.payoneer.utils.BaseSchedulerProvider;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends ViewModel {
 
-	private final AppRepository repository = Injector.provideRepository();
-	private final SchedulersFacade scheduler = Injector.provideScheduler();
+	private final AppDataSource repository;
+	private final BaseSchedulerProvider scheduler;
 	private final CompositeDisposable disposables = new CompositeDisposable();
 
 	MutableLiveData<Response> response = new MutableLiveData<>();
+
+	public MainViewModel(
+			AppDataSource repository,
+			BaseSchedulerProvider scheduler
+	) {
+		this.repository = repository;
+		this.scheduler = scheduler;
+	}
 
 	/**
 	 * Request method to fetch payment list data

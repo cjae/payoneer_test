@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.expanse.app.payoneer.databinding.MainFragmentBinding;
+import com.expanse.app.payoneer.di.Injector;
 import com.expanse.app.payoneer.model.ListResult;
 import com.expanse.app.payoneer.model.Response;
 import com.expanse.app.payoneer.ui.adapter.NetworkAdapter;
+import com.expanse.app.payoneer.utils.MainScheduler;
 import com.expanse.app.payoneer.utils.RequestErrorHelper;
 
 import java.math.BigDecimal;
@@ -36,7 +38,8 @@ public class MainFragment extends Fragment {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		adapter = new NetworkAdapter();
-		mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+		mViewModel = new ViewModelProvider(this, new MainViewModelFactory(Injector.provideRepository(), new MainScheduler()))
+				.get(MainViewModel.class);
 	}
 
 	@Nullable

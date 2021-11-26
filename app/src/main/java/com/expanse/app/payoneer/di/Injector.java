@@ -2,7 +2,6 @@ package com.expanse.app.payoneer.di;
 
 import com.expanse.app.payoneer.data.AppRepository;
 import com.expanse.app.payoneer.data.ServiceGenerator;
-import com.expanse.app.payoneer.utils.SchedulersFacade;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +18,6 @@ public class Injector {
 	private static AppRepository repository;
 	private static OkHttpClient okHttpClient;
 	private static Retrofit retrofitInstance;
-	private static SchedulersFacade scheduler;
 	private static ServiceGenerator serviceGenerator;
 
 	private static Retrofit provideRetrofit() {
@@ -63,13 +61,5 @@ public class Injector {
 		}
 
 		return repository;
-	}
-
-	public static SchedulersFacade provideScheduler() {
-		if (scheduler == null) {
-			scheduler = new SchedulersFacade();
-		}
-
-		return scheduler;
 	}
 }
