@@ -10,6 +10,12 @@ import java.net.URL;
 
 public class BindingHelper {
 
+	/**
+	 * Binding Adapter Method to load image using Glide
+	 *
+	 * @param imageView view to load into
+	 * @param url url to load from
+	 */
 	@BindingAdapter("imageUrl")
 	public static void loadImage(ImageView imageView, URL url) {
 		Glide.with(imageView.getContext())

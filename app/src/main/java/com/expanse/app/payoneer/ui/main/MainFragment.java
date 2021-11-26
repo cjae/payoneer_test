@@ -23,6 +23,9 @@ import java.math.BigDecimal;
 
 import timber.log.Timber;
 
+/**
+ * The Main Fragment showing available payment methods in a list.
+ */
 public class MainFragment extends Fragment {
 
 	private NetworkAdapter adapter;
@@ -38,14 +41,16 @@ public class MainFragment extends Fragment {
 
 	@Nullable
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater,
+							 @Nullable ViewGroup container,
 							 @Nullable Bundle savedInstanceState) {
 		binding = MainFragmentBinding.inflate(inflater, container, false);
 		return binding.getRoot();
 	}
 
 	@Override
-	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view,
+							  @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		initNetworkRv();
 		observeViewModel();

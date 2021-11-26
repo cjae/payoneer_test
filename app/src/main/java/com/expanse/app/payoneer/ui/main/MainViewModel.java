@@ -12,12 +12,18 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class MainViewModel extends ViewModel {
 
+	private final AppRepository repository = Injector.provideRepository();
+	private final SchedulersFacade scheduler = Injector.provideScheduler();
 	private final CompositeDisposable disposables = new CompositeDisposable();
+
 	MutableLiveData<Response> response = new MutableLiveData<>();
 
+	/**
+	 * Request method to fetch payment list data
+	 * and response live data updated based on result
+	 *
+	 */
 	void getPaymentMethods() {
-		AppRepository repository = Injector.provideRepository();
-		SchedulersFacade scheduler = Injector.provideScheduler();
 		disposables.add(
 				repository.getPaymentMethods()
 						.subscribeOn(scheduler.io())
