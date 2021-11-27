@@ -4,13 +4,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.expanse.app.payoneer.data.AppDataSource;
-import com.expanse.app.payoneer.data.AppRepository;
 import com.expanse.app.payoneer.model.Response;
 import com.expanse.app.payoneer.utils.BaseSchedulerProvider;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends ViewModel {
 

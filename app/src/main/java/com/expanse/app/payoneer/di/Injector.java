@@ -2,6 +2,7 @@ package com.expanse.app.payoneer.di;
 
 import com.expanse.app.payoneer.data.AppRepository;
 import com.expanse.app.payoneer.data.ServiceGenerator;
+import com.expanse.app.payoneer.utils.MainScheduler;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class Injector {
 
 	private static final String BASE_URL = "https://raw.githubusercontent.com/optile/";
 
+	private static MainScheduler scheduler;
 	private static AppRepository repository;
 	private static OkHttpClient okHttpClient;
 	private static Retrofit retrofitInstance;
@@ -61,5 +63,13 @@ public class Injector {
 		}
 
 		return repository;
+	}
+
+	public static MainScheduler provideScheduler() {
+		if (scheduler == null) {
+			scheduler = new MainScheduler();
+		}
+
+		return scheduler;
 	}
 }

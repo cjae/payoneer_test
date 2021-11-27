@@ -1,6 +1,7 @@
 package com.expanse.app.payoneer.ui.main;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
@@ -39,7 +40,7 @@ public class MainViewModelTest {
 		ListResult actualValue = ((ListResult) response.data);
 		assert actualValue != null;
 
-		assertEquals(1, actualValue.getNetworks().getApplicable().size());
+		assertFalse(actualValue.getNetworks().getApplicable().isEmpty());
 	}
 
 	@Test
