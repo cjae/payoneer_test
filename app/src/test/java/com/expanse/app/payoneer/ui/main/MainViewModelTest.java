@@ -8,6 +8,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import com.expanse.app.payoneer.data.FakeRepository;
 import com.expanse.app.payoneer.model.ListResult;
 import com.expanse.app.payoneer.model.Response;
+import com.expanse.app.payoneer.utils.LiveDataTestUtil;
 import com.expanse.app.payoneer.utils.Status;
 import com.expanse.app.payoneer.utils.TestScheduler;
 
@@ -29,27 +30,23 @@ public class MainViewModelTest {
 	}
 
 	@Test
-	public void getPaymentMethods_checkSuccess() {
+	public void getPaymentMethods_checkSuccess() throws InterruptedException {
 		viewModel.getPaymentMethods();
 
-		Response response = viewModel.response.getValue();
-		assert response != null;
+		Response result = LiveDataTestUtil.getOrAwaitValue(viewModel.response);
+		assertEquals(Status.SUCCESS, result.status);
 
-		assertEquals(Status.SUCCESS, response.status);
-
-		ListResult actualValue = ((ListResult) response.data);
+		ListResult actualValue = ((ListResult) result.data);
 		assert actualValue != null;
 
 		assertFalse(actualValue.getNetworks().getApplicable().isEmpty());
 	}
 
 	@Test
-	public void getPaymentMethods_checkError() {
+	public void getPaymentMethods_checkError() throws InterruptedException {
 		viewModel.getPaymentMethods();
 
-		Response response = viewModel.response.getValue();
-		assert response != null;
-
-		assertEquals(Status.ERROR, response.status);
+		Response result = LiveDataTestUtil.getOrAwaitValue(viewModel.response);
+		assertEquals(Status.ERROR, result.status);
 	}
 }
