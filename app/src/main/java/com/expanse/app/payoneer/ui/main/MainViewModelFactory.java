@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.expanse.app.payoneer.data.AppRepository;
+import com.expanse.app.payoneer.ui.input.InputViewModel;
 import com.expanse.app.payoneer.utils.MainScheduler;
 
 public class MainViewModelFactory implements ViewModelProvider.Factory {
@@ -22,6 +23,10 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
 	public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 		if (modelClass.isAssignableFrom(MainViewModel.class)) {
 			return (T) new MainViewModel(repository, scheduler);
+		}
+
+		if (modelClass.isAssignableFrom(InputViewModel.class)) {
+			return (T) new InputViewModel(repository, scheduler);
 		}
 
 		throw new IllegalArgumentException("Unable to construct viewmodel");

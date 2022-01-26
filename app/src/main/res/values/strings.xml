@@ -4,4 +4,5 @@
     <string name="dash_text">--</string>
     <string name="total_payable">Total payable</string>
     <string name="payment_options">Select payment methods</string>
+    <string name="pay">Pay</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.expanse.app.payoneer.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.expanse.app.payoneer.databinding.MainFragmentBinding;
 import com.expanse.app.payoneer.di.Injector;
+import com.expanse.app.payoneer.model.ApplicableNetwork;
 import com.expanse.app.payoneer.model.ListResult;
 import com.expanse.app.payoneer.model.Response;
 import com.expanse.app.payoneer.ui.adapter.NetworkAdapter;
+import com.expanse.app.payoneer.ui.InputActivity;
+import com.expanse.app.payoneer.ui.listener.NetworkClickListener;
+import com.expanse.app.payoneer.utils.AppKeys;
 import com.expanse.app.payoneer.utils.RequestErrorHelper;
+import com.google.gson.Gson;
 
 import java.math.BigDecimal;
 
@@ -27,7 +34,7 @@ import timber.log.Timber;
 /**
  * The Main Fragment showing available payment methods in a list.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements NetworkClickListener {
 
 	private NetworkAdapter adapter;
 	private MainViewModel mViewModel;
@@ -36,7 +43,7 @@ public class MainFragment extends Fragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		adapter = new NetworkAdapter();
+		adapter = new NetworkAdapter(this);
 		mViewModel = new ViewModelProvider(this, new MainViewModelFactory(
 				Injector.provideRepository(),
 				Injector.provideScheduler())
@@ -123,5 +130,12 @@ public class MainFragment extends Fragment {
 				RequestErrorHelper.getErrorMessage(throwable),
 				Toast.LENGTH_SHORT
 		).show();
+	}
+
+	@Override
+	public void networkItemClicked(ApplicableNetwork item) {
+		Intent intent = new Intent(getContext(), InputActivity.class);
+		intent.putExtra(AppKeys.ITEM_KEY, new Gson().toJson(item));
+		startActivity(intent);
 	}
 }

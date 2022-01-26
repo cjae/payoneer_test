@@ -1,5 +1,8 @@
 package com.expanse.app.payoneer.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.net.URL;
 import java.util.List;
 import java.util.Map;

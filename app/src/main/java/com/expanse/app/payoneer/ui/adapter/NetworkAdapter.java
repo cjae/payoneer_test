@@ -9,12 +9,16 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.expanse.app.payoneer.databinding.NetworkItemBinding;
 import com.expanse.app.payoneer.model.ApplicableNetwork;
+import com.expanse.app.payoneer.ui.listener.NetworkClickListener;
 import com.expanse.app.payoneer.ui.viewholder.NetworkViewHolder;
 
 public class NetworkAdapter extends ListAdapter<ApplicableNetwork, NetworkViewHolder> {
 
-	public NetworkAdapter() {
+	NetworkClickListener listener;
+
+	public NetworkAdapter(NetworkClickListener listener) {
 		super(DIFF_CALLBACK);
+		this.listener = listener;
 	}
 
 	@NonNull
@@ -28,6 +32,7 @@ public class NetworkAdapter extends ListAdapter<ApplicableNetwork, NetworkViewHo
 	@Override
 	public void onBindViewHolder(@NonNull NetworkViewHolder holder, int position) {
 		holder.bindTo(getItem(position));
+		holder.itemView.setOnClickListener(view -> listener.networkItemClicked(getItem(position)));
 	}
 
 	public static final DiffUtil.ItemCallback<ApplicableNetwork> DIFF_CALLBACK =
